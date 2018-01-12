@@ -1,0 +1,32 @@
+{
+  "name": "capture",
+  "version": "1.0",
+  "description": "Capture your influx request",
+  "permissions": [
+    "webRequest",
+    "alarms",
+    "tabs",
+    "storage",
+    "identity",
+    "identity.email",
+    "*://secure.helpscout.net/*",
+    "*://*.zendesk.com/*",
+    "*://*.freshdesk.com/*",
+    "*://*.ticksy.com/*",
+    "*://*.groovehq.com/*",
+    "*://app.intercom.io/*",
+    "*://app.frontapp.com/*",
+    "*://*.uservoice.com/*",
+    "*://*.desk.com/*",
+    "*://themeforest.net/item/*",
+    "*://support.advancedcustomfields.com/*",
+    "*://simplesharebuttons.com/*",
+    "*://theme4press.com/*",
+    "*://*.myshopify.com/*"
+   ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "manifest_version": 2
+}

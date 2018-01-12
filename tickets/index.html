@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<!-- define angular app -->
+<html ng-app="myApp">
+
+<head>
+  <!-- SCROLLS -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+
+  <!-- SPELLS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+  <script src="script.js"></script>
+  <style>
+		html,body{
+			height: 100%
+		}
+		#main{
+			min-height: calc(100% - 100px);
+			position:relative;
+		}
+		footer{ 
+			height:100px;
+			width:100%;
+			left: 0;
+			bottom: 0;
+			padding:20px;
+		}
+  </style>
+</head>
+
+<!-- define angular controller -->
+<body ng-controller="mainController">
+  <div id="main">
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">Capture Tickets</a>
+			</div>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+				<li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
+			</ul>
+		</div>
+	</nav>  
+	<!-- angular templating -->
+	<!-- this is where content will be injected -->
+	<div ng-view></div>
+    
+  </div>
+  
+  <footer class="text-center">&copy Copyright 2018 Capture Tickets - All Rights Reserved</footer>
+  
+</body>
+
+</html>
