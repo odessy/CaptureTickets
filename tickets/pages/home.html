@@ -14,7 +14,7 @@
 		<tr data-ng-repeat="ticket in data | reverse | filter:search">
 		  <th scope="row">{{$index + 1}}</th>
 		  <td><a href="{{ticket.url | fixUrl}}" target="_blank">{{ticket.url | fixUrl}}</a></td>
-		  <td>{{ticket.body}}</td>
+		  <td>{{ticket.body || ticket.html_body}}</td>
 		</tr>
 	  </tbody>
 	</table>
