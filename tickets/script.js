@@ -26,6 +26,7 @@
 		.replace("/api/tickets","/groove_client/tickets")
 		.replace("/reply", "")
 		.replace("/api/v0/conversations/", "/conversation/")
+		.replace("/api/v2/tickets", "/tickets")
 
 	  }
 
