@@ -150,9 +150,9 @@ function addFilter($name, $filter){
 	$filters[$name] = $filter;
 }
 
-addFilter("woocurve", ["url=*woocurve.groovehq.com*/tickets/*\d", "body->ticket->title", "body->ticket->comments_attributes->0->body", "body->ticket->comments_attributes->0->private=false", "body->draft=false"]);
-addFilter("helpscout", ["url=*secure.helpscout.net*/conversations/*reply/", "body->body", "body->ticketID"]);
-addFilter("shareThis", ["url=*sharethis-publishers.zendesk.com/*/tickets/*\d", "body->ticket->subject", "body->ticket->comment->html_body", "body->ticket->comment->public=true"]);
+addFilter("woocurve", ["url=*woocurve.groovehq.com*/tickets/*\d", "body->ticket->title","currentDate","body->ticket->comments_attributes->0->body", "body->ticket->comments_attributes->0->private=false", "body->draft=false"]);
+addFilter("helpscout", ["url=*secure.helpscout.net*/conversations/*reply/", "body->body","currentDate", "body->ticketID"]);
+addFilter("shareThis", ["url=*sharethis-publishers.zendesk.com/*/tickets/*\d", "body->ticket->subject","currentDate", "body->ticket->comment->html_body", "body->ticket->comment->public=true"]);
 
 readTicketsFile();
 
