@@ -1,7 +1,7 @@
 <div class="container">
 	<input type="text" ng-model="search" class="form-control input-lg" placeholder="Search">
 	<br>
-	<p>Total number of tickets: {{data.length}}</p>
+	<p>Total number of tickets: <b>{{data.length}}</b>   <span ng-if="search">Found <b>{{(data|filter:search).length}}</b> results.</span></p>
 	<table ng-if="data.length > 0" class="table table-hover table-striped">
 	  <thead style="background-color:#444; color: #fff;">
 		<tr>
@@ -13,8 +13,8 @@
 	  <tbody>
 		<tr data-ng-repeat="ticket in data | reverse | filter:search">
 		  <th scope="row">{{$index + 1}}</th>
-		  <td><a href="{{ticket.url | fixUrl}}" target="_blank">{{ticket.url | fixUrl}}</a></td>
-		  <td>{{ticket.body || ticket.html_body}}</td>
+		  <td><span><a href="{{ticket.url | fixUrl}}" target="_blank">{{ticket.url | fixUrl}}</a></span></td>
+		  <td><p style="font-size: 12px;">{{ticket.currentDate}}<p><span>{{ticket.body || ticket.html_body}}</span></td>
 		</tr>
 	  </tbody>
 	</table>
