@@ -1,6 +1,12 @@
 <?php
 
 /*
+* Output a file containing all tickets that got filtered
+*/
+
+define('OUTPUT_CLEAN_FILE', false);
+
+/*
 * contain the filters
 */
 $filters = [];
@@ -21,9 +27,11 @@ function match_wildcard( $wildcard_pattern, $haystack ) {
 
 //match_wildcard($parts[1], $json->$p );
 
-function processJsonTicket($json){
+function processJsonTicket($line){
 	global $filters;
 	global $tickets;
+	
+	$json = json_decode($line);
 	
 	foreach ($filters as $key=>$filter) {
 		
@@ -33,7 +41,7 @@ function processJsonTicket($json){
 			
 			$p =  $parts[0];
 			
-			if(!match_wildcard($parts[1], $json->$p )) continue;
+			if( $json && !match_wildcard($parts[1], $json->{$p} )) continue;
 			
 			$ticket = array();
 
@@ -91,9 +99,13 @@ function processJsonTicket($json){
 
 			if($keyValid == true) {
 				array_push($tickets, $ticket);
+				
+				return true;
 			}
 		}
 	}
+	
+	return false;
 }
 
 function stringToBool($val){
@@ -103,22 +115,32 @@ function stringToBool($val){
 function readTicketsFile(){
 	global $tickets;
 	
-	$fileData = function(){
-		$my_file = './file.txt';
-		$handle = @fopen($my_file, 'r');
-		
-		if($handle == false) return;
-		
-		while (($line = fgets($handle)) !== false) {
-			yield $line;
-		}
-
-		fclose($handle);
-	};
-
-	foreach ($fileData() as $line) {
-		processJsonTicket(json_decode($line));
+	$my_output_file = './output_file.txt';
+	$my_file = './file.txt';
+	
+	$handle = @fopen($my_file, 'r');
+	$handle2 = NULL;
+	
+	if($handle == false) return;
+	
+	if(OUTPUT_CLEAN_FILE){
+		$handle2 = @fopen($my_output_file, 'w');
+		if($handle2 == false) return;
 	}
+	
+	while (($line = fgets($handle)) !== false) {
+		
+		if( processJsonTicket($line) && OUTPUT_CLEAN_FILE ){
+			fwrite($handle2, $line);
+		}
+	}
+
+	fclose($handle);
+	
+	if(OUTPUT_CLEAN_FILE){
+		fclose($handle2);
+	}
+
 	
 	//echo processHeader();
 	//echo "<pre>";
