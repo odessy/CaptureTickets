@@ -1,5 +1,5 @@
 	// create the module and name it myApp
-	var myApp = angular.module('myApp', ['ngRoute']);
+	var myApp = angular.module('myApp', ['ngRoute', 'ngSanitize']);
 
 	// configure our routes
 	myApp.config(function($routeProvider) {
@@ -17,17 +17,23 @@
 				controller  : 'aboutController'
 			})
 	});
+
+	myApp.filter('unescape', function(){
+		return function(str){
+			//return $sce.parseAsHtml(str);
+			return str.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
+		}
+	});
 	
 	myApp.filter('fixUrl', function() {
 
 	  // In the return function, replace the following string in url.
 	  return function(url) {
 		return url
-		.replace("/api/tickets","/groove_client/tickets")
+		//.replace("/api/tickets","/groove_client/tickets")
 		.replace("/reply", "")
 		.replace("/api/v0/conversations/", "/conversation/")
 		.replace("/api/v2/tickets", "/tickets")
-
 	  }
 
 	});
@@ -50,7 +56,8 @@
 		}
 		
 		$scope.callAtInterval();
-		$scope.intervalCall = $interval($scope.callAtInterval, 30000);
+
+		$scope.intervalCall = $interval($scope.callAtInterval, 180000);
 		
 		$scope.$on('$destroy', function() {
 			// Make sure that the interval is destroyed too

@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-
 <!-- define angular app -->
-<html ng-app="myApp">
+<html lang="en-US" ng-app="myApp">
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8"/>
   <!-- SCROLLS -->
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/font-awesome.css" />
 
   <!-- SPELLS -->
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
-  <script src="script.js"></script>
+  <script src="js/angular-1.8.2/angular.min.js"></script>
+  <script src="js/angular-1.8.2/angular-route.min.js"></script>
+  <script src="js/angular-1.8.2/angular-sanitize.min.js"></script>
+  <script src="js/script.js"></script>
   <style>
 		html,body{
 			height: 100%
+			background-color: #fefefe;
 		}
 		#main{
 			min-height: calc(100% - 100px);
@@ -28,11 +30,22 @@
 			bottom: 0;
 			padding:20px;
 		}
-		table td span {
+		.table{
+			max-width: 100%;
+			border: 1px solid #f5f5f5;
+		}
+		table td span,
+		table td p{
 			word-break: break-word;
 		}
 		table td span a {
 			white-space: nowrap;
+		}
+		table td img{
+			max-width: 100% !important;
+		}
+		table td.body{
+			width: inherit;
 		}
   </style>
 </head>
@@ -58,7 +71,7 @@
     
   </div>
   
-  <footer class="text-center">&copy Copyright 2018 Capture Tickets - All Rights Reserved</footer>
+  <footer class="text-center">&copy; Copyright 2018 Capture Tickets - All Rights Reserved</footer>
   
 </body>
 
