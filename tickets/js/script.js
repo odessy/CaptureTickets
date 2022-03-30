@@ -1,10 +1,15 @@
+(function() {
+	'use strict';
+	
 	// create the module and name it myApp
-	var myApp = angular.module('myApp', ['ngRoute', 'ngSanitize']);
+	const myApp = angular.module('myApp', ['ngRoute', 'ngSanitize']);
 
 	// configure our routes
-	myApp.config(function($routeProvider) {
+	myApp.config(function($routeProvider, $locationProvider) {
+					  
+		$locationProvider.html5Mode(true);
+		
 		$routeProvider
-
 			// route for the home page
 			.when('/', {
 				templateUrl : 'pages/home.html',
@@ -24,7 +29,7 @@
 			return str.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
 		}
 	});
-	
+
 	myApp.filter('fixUrl', function() {
 
 	  // In the return function, replace the following string in url.
@@ -37,20 +42,21 @@
 	  }
 
 	});
-	
+
 	myApp.filter('reverse', function() {
 	  return function(items) {
 		if(items) return items.slice().reverse();
 	  };
 	});
-	
+
 	// create the controller and inject Angular's $scope
-	myApp.controller('mainController', function($scope, $http, $interval) {
+	myApp.controller('mainController', function($scope, $http, $interval, $location) {
 		
 		$scope.$http = $http;
+		$scope.$location = $location;
 		
 		$scope.callAtInterval = function() {
-			$scope.$http.get("http://localhost/tickets/readTicket.php").then(function(response) {
+			$scope.$http.get("/tickets/readTicket.php").then(function(response) {
 				$scope.data = response.data;
 			});
 		}
@@ -68,8 +74,8 @@
 	myApp.controller('aboutController', function($scope) {
 		$scope.message = 'Allows you to display your tickets captured with browser extension';
 	});
-	
-	
+
+
 	function createNode(text) {
 	  const node = document.createElement('pre');
 	  node.style.width = '1px';
@@ -101,7 +107,7 @@
 	  selection.removeAllRanges();
 	  return Promise.resolve();
 	}	
-	
+
 	function copyText(text) {
 	  if ('clipboard' in navigator) {
 		// eslint-disable-next-line flowtype/no-flow-fix-me-comments
@@ -121,7 +127,7 @@
 	  body.removeChild(node);
 	  return Promise.resolve();
 	}
-	
+
 	function copyTarget(content) {
 	  if (content instanceof HTMLInputElement || content instanceof HTMLTextAreaElement) {
 		return copyText(content.value);
@@ -211,10 +217,11 @@
 	  window.ClipboardCopyElement = ClipboardCopyElement;
 	  window.customElements.define('clipboard-copy', ClipboardCopyElement);
 	}
-	
-	
+
+
 	document.addEventListener('clipboard-copy', (e) => {
 		//get target and add success class to clipboard element
 		
 	});
-	
+
+})();
