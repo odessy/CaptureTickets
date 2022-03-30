@@ -27,7 +27,7 @@ body->key2->key3
 body->key4->0->key5
 </pre>
 
-Perform check for wildcard value match again key's value. 
+Perform check for wildcard value match against key's value. 
 
 <pre>body->key=string*</pre>
 
