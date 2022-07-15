@@ -5,19 +5,24 @@ Allows you to display your tickets captured with browser extension
 
 1. Enable developer mode in chrome and install the capture extension.
 2. Place the tickets folder in root of your local webserver.
+ 
 
 <h2>Creating Filters</h2>
 
+Example payload captured by the extension
+
 <pre>
 {
-   url:"",
+   url: "example.com",
+   currentDate: "",
+   method: "PUT",
    body: {
       key:value,
       key2:{key3:value2},
       key4:[{key5: value3}]
    }
 }
-</pre>
+</pre>     
 
 To access key in Object use ->.
 
@@ -33,7 +38,7 @@ Perform check for wildcard value match against key's value.
 
 Perform check for boolean value in Key
 
-<pre>boyd->key=true</pre>
+<pre>body->key=true</pre>
 
 
 Edit file tickets\readticket.php to add new filters.
