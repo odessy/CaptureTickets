@@ -1,0 +1,21 @@
+{
+  "name": "capture",
+  "version": "1.0",
+  "description": "Capture your support request",
+  "permissions": [
+    "webRequest",
+    "alarms",
+    "tabs",
+    "storage",
+    "identity",
+    "identity.email",
+    "*://secure.helpscout.net/*",
+    "*://*.myshopify.com/*",
+	"*://app.frontapp.com/*"
+   ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "manifest_version": 2
+}

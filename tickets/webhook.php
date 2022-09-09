@@ -9,7 +9,7 @@ $handle = fopen($my_file, 'a') or die('Cannot open file:  '.$my_file);
 
 $ticket = processJsonTicket($message);
 if($ticket !== NULL){
-	fwrite($handle, $message . "\n");
+	fwrite($handle, json_encode($ticket) . "\n");
 }
 
 fclose($handle);

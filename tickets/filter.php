@@ -132,6 +132,7 @@ function addFilter($name, $filter){
 
 //addFilter("woocurve", ["url=*woocurve.groovehq.com*/tickets/*\d", "body->ticket->title","currentDate","body->ticket->comments_attributes->0->body", "body->ticket->comments_attributes->0->private=false", "body->draft=false"]);
 addFilter("helpscout", ["url=*secure.helpscout.net*/conversations/*reply/", "body->body","currentDate", "body->ticketID"]);
+addFilter("frontapp", ["url=*app.frontapp.com*/conversations/*messages/*","method=PUT","body->in_reply_to_id=*","body->html","currentDate","body->link"]);
 //addFilter("shareThis", ["url=*sharethis-publishers.zendesk.com/*/tickets/*\d", "body->ticket->subject","currentDate", "body->ticket->comment->html_body", "body->ticket->comment->public=true"]);
 //addFilter("themenectar", ["url=*themenectar.ticksy.com*/ticket/*", "body->ticket_id->0", "currentDate", "body->comment->0=*", "body->comment_type->0=comment"]);
 //addFilter("fuelthemes", ["url=*fuelthemes.ticksy.com*/ticket/*", "body->ticket_id->0", "currentDate", "body->comment->0=*", "body->comment_type->0=comment"]);

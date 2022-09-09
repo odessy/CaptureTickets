@@ -39,9 +39,28 @@
 		.replace("/reply", "")
 		.replace("/api/v0/conversations/", "/conversation/")
 		.replace("/api/v2/tickets", "/tickets")
+		.replace("/cell-00012/api/1", "")
+		.replace("?include_conversation=true", "")
 	  }
 
 	});
+	
+	myApp.filter('findBody', function() {
+
+	  // In the return function, replace the following string in url.
+	  return function(ticket) {
+		if(ticket.body){
+			return ticket.body;
+		}
+		if(ticket.html_body){
+			return ticket.html_body;
+		}
+		if(ticket.html){
+			return ticket.html;
+		}
+	  }
+
+	});	
 
 	myApp.filter('reverse', function() {
 	  return function(items) {

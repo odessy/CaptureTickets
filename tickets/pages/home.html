@@ -28,7 +28,7 @@
 					  </svg>
 					</clipboard-copy>
 				</div>			  
-			  <p ng-bind-html="ticket.body" id="{{$index + 1}}"></p>
+			  <p ng-bind-html="ticket | findBody" id="{{$index + 1}}"></p>
 			  </div>
 		  </td>
 		</tr>
